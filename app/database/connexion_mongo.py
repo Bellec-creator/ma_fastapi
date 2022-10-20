@@ -19,3 +19,7 @@ async def get_all(collection: str):
     async for data in data_collection.find():
         list_data.append(data)
     return list_data
+
+async def drop_bd(collection:str):
+    data_collection = database.get_collection(collection)
+    data_collection.drop()
