@@ -136,5 +136,5 @@ dmypy.json
 run.py
 
 # IDE
-
+/.idea
 .idea
