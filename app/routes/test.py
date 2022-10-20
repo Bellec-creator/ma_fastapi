@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Body, HTTPException
 from fastapi.encoders import jsonable_encoder
 
-from app.database.connexion_mongo import get_all, insert
+from app.database.connexion_mongo import get_all, insert, drop_bd
 from app.models.user import User
 
 router_test = APIRouter()
@@ -32,3 +32,7 @@ async def post_user(proprietaire_data: User = Body(...)):
     if new_proprietaire:
         return new_proprietaire
     raise HTTPException(500, "Erreur technique lors de l'opération")
+
+@router_test.delete("/delete_collection")
+async def delete_collection(collection:str):
+    drop_bd(collection)
