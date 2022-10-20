@@ -11,4 +11,4 @@ def list_all_routes():
     return url_list
 
 
-app.include_router(router_test, tags=['test'], prefix='/test')
+app.include_router(router_test, tags=['test'])
