@@ -23,3 +23,8 @@ async def get_all(collection: str):
 async def drop_bd(collection:str):
     data_collection = database.get_collection(collection)
     data_collection.drop()
+
+async def get_user_from_project(project:str):
+    data_collection = database.get_collection("user")
+    project_user = data_collection.find({"current_project":project})
+    return project_user
