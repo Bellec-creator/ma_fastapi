@@ -6,13 +6,16 @@ from app.models.user import User
 
 router_test = APIRouter()
 
+
 @router_test.get("/test")
 async def hello_world():
     return {"message": "Hello World"}
 
+
 @router_test.get("/test2")
-async def test_string(string:str):
+async def test_string(string: str):
     return {"message": string}
+
 
 @router_test.get("/all_users")
 async def test_mongodb():
@@ -21,7 +24,9 @@ async def test_mongodb():
         return proprietaire
     raise HTTPException(404, "Aucun user n'a été trouvé")
 
-async def post_proprietaire(proprietaire_data : User = Body(...)):
+
+@router_test.post("/insert_user", response_model=User)
+async def post_user(proprietaire_data: User = Body(...)):
     user = jsonable_encoder(proprietaire_data)
     new_proprietaire = await insert("user", user)
     if new_proprietaire:
